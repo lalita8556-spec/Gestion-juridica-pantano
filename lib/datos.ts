@@ -1,0 +1,3 @@
+import { z } from 'zod';
+const expediente = z.object({id:z.string(),radicado:z.string().min(1),asunto:z.string(),partes:z.string(),estado:z.enum(['En trámite','Pendiente de audiencia','Archivado']),actuaciones:z.array(z.object({id:z.string(),fecha:z.string(),tipo:z.string(),descripcion:z.string()}))});
+export const datosSchema = z.object({expedientes:z.array(expediente),documentos:z.array(z.object({id:z.string(),nombre:z.string(),radicado:z.string(),categoria:z.string(),fecha:z.string(),estado:z.enum(['Pendiente de revisión','Clasificado'])})),audiencias:z.array(z.object({id:z.string(),radicado:z.string(),fecha:z.string(),asunto:z.string(),modalidad:z.enum(['Presencial','Google Meet','Inspección ocular'])}))});
